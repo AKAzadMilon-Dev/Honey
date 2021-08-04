@@ -1,5 +1,9 @@
-
 @extends('backend.master')
+
+@section('product_active')
+    active
+@endsection
+
 @section('content')
     <div class="content-page">
         <!-- Start content -->
@@ -28,9 +32,9 @@
                         <div class="card-box">
                             <h2 class="m-t-0 header-title text-center">Total Category({{ $prouctCount }})</h2>
                             <div class="text-center">
-                                <a href="{{ route('ProductAdd') }}" class="btn btn-outline-primary mb-3"> <i class="fi-plus"></i> Add New Product</a>
+                                <a href="{{ route('ProductAdd') }}" class="btn btn-outline-info mb-3"> <i class="fi-plus"></i> Add New Product</a>
                             </div>
-
+                            {{-- Success Message --}}
                             @if (session('success'))
                             <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
                                 <strong>{{ session('success') }}</strong>
@@ -39,7 +43,7 @@
                                 </button>
                             </div>
                             @endif
-
+                            {{-- Error Message --}}
                             @if (session('error'))
                             <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                                 <strong>{{ session('error') }}</strong>
@@ -73,7 +77,7 @@
                                             <th>Product Thumbnail</th>
                                             <th>Product Gallery</th>
                                             <th>Created</th>
-                                            <th class="text-center">Action</th>
+                                            <th width="250" class="text-center">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -102,9 +106,9 @@
                                                 </td>
                                                 <td>{{ $item->created_at != null ? $item->created_at->diffForHumans() : 'N/A' }}</td>
                                                 <td class="text-center">
-                                                    <a href="{{ route('ProductEdit', $item->id) }}" class="btn btn-outline-primary rounded-5">Edit</a>
+                                                    <a href="{{ route('singleProduct', $item->slug) }}" class="btn btn-outline-success rounded-5">View</a>
+                                                    <a href="{{ route('ProductEdit', $item->id) }}" class="btn btn-outline-info rounded-5">Edit</a>
                                                     <a href="{{ route('ProductDelete', $item->id) }}" class="btn btn-outline-danger rounded-5">Delete</a>
-                                                    <a href="{{ route('singleProduct', $item->slug) }}" class="btn btn-outline-danger rounded-5">View</a>
                                                 </td>
                                             </tr>
                                             @endforeach
@@ -118,14 +122,10 @@
                         </div>
                     </div>
                 </div>
-
-
             </div> <!-- container -->
-
         </div> <!-- content -->
-
         <footer class="footer text-right">
-            2021 © rasel. - raselwebdev.com
+            2021 © milon. - codermilon.com
         </footer>
 
     </div>

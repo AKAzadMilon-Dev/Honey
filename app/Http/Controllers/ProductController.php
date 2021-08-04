@@ -149,6 +149,9 @@ class ProductController extends Controller
            'ProductCategory' => Category::orderBy('category_name', 'asc')->get(),
            'brands' => Brand::orderBy('brand_name', 'asc')->get(),
            'ProductSubCategory' => SubCategory::where('category_id', $product->category_id)->orderBy('subcategory_name', 'asc')->get(),
+           'color' => Color::orderBy('color_name', 'asc')->get(),
+           'size' => Size::orderBy('size', 'asc')->get(),
+            'attributes' => ProductAttribute::where('product_id', $id)->get(),
         ]);
     }
 
@@ -173,15 +176,15 @@ class ProductController extends Controller
         $product->subcategory_id = $request->subcategory;
         $product->category_id = $request->cateogryName;
         $product->brand_id = $request->BrandName;
-        $product->price = $request->productPrice;
+        $product->product_price = $request->productPrice;
         $product->summary = $request->productSummary;
         $product->description = $request->productDesc;
         $product->save();
 
          // Product Attributes Data Insert
-         $productPrices = $request->productPrice;
+         $productPrices = $request->attributeprice;
          foreach( $productPrices as $key => $productPrice){
-             $productAtt = new ProductAttribute;
+             $productAtt = ProductAttribute::findOrFail($request->productAttributeId[$key]);
              $productAtt->product_id = $product->id;
              $productAtt->price = $productPrice;
              $productAtt->quantity =  $request->quantity[$key];
@@ -208,5 +211,7 @@ class ProductController extends Controller
         }
         return back()->with('success', 'Product Update Successfully.');
     }
+
+
 
 }

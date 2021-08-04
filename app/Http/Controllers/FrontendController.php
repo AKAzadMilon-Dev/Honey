@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Blog;
 use App\Models\ProductAttribute;
 use Illuminate\Http\Request;
 
@@ -48,4 +49,20 @@ class FrontendController extends Controller
             'products' => Product::with(['Category', 'ProductAttribute', 'SubCategory'])->latest()->get(),
         ]);
     }
+
+    function blogs(){
+        return view('Frontend.pages.blogs',[
+            'blogs' => Blog::latest()->get(),
+
+        ]);
+    }
+
+    function singleBlog($slug){
+        return view('Frontend.pages.single-blog',[
+            'singleBlogs' => Blog::where('slug', $slug)->first(),
+            'categories' => Category::orderBy('category_name', 'asc')->get(),
+            'blogs' => Blog::latest()->limit(5)->get(),
+        ]);
+    }
+
 }

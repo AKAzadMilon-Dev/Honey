@@ -156,45 +156,58 @@
                                     <i class="fi-air-play"></i><span class="badge badge-success pull-right"></span> <span> Dashboard </span>
                                 </a>
                             </li>
-
+                            {{-- Category --}}
                             <li>
-                                <a href="javascript: void(0);"><i class="fi-layers"></i> <span> Category </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript: void(0);" class="sl-menu-link @yield('category_active')"><i class="fi-layers"></i> <span> Category </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{ url('admin/category-list') }}">Category-list</a></li>
                                     <li><a href="{{ url('admin/category-add') }}">Category-Add</a></li>
                                     <li><a href="{{ url('admin/category-trashlist') }}">Trash</a></li>
                                 </ul>
                             </li>
-
+                            {{-- Sub Category --}}
                             <li>
-                                <a href="javascript: void(0);"><i class="mdi mdi-lan"></i> <span>Sub-Category </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript: void(0);" class="sl-menu-link @yield('subCategory_active')"><i class="mdi mdi-lan"></i> <span>Sub-Category </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{ route('SubCategoryAdd') }}">Sub-Category-Add</a></li>
                                     <li><a href="{{ route('SubCategoryView') }}">Sub-Category-list</a></li>
                                     <li><a href="{{ route('SubcategoryTrashlist') }}">Trash</a></li>
                                 </ul>
                             </li>
-
+                            {{-- Brand --}}
                             <li>
-                                <a href="javascript: void(0);"><i class="mdi mdi-heart-outline"></i> <span>Brand</span> <span class="menu-arrow"></span></a>
+                                <a href="javascript: void(0);" class="sl-menu-link @yield('brand_active')"><i class="mdi mdi-heart-outline"></i> <span>Brand</span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{ route('brandAdd') }}">Brand-Add</a></li>
                                     <li><a href="{{ route('brandView') }}">Brand-List</a></li>
                                     <li><a href="{{ route('brandTrash') }}">Trash</a></li>
                                 </ul>
                             </li>
-
+                            {{-- Product --}}
                             <li>
-                                <a href="javascript: void(0);"><i class="mdi mdi-package-variant-closed"></i> <span>Product </span> <span class="menu-arrow"></span></a>
+                                <a href="javascript: void(0);" class="sl-menu-link @yield('product_active')"><i class="mdi mdi-package-variant-closed"></i> <span>Product </span> <span class="menu-arrow"></span></a>
                                 <ul class="nav-second-level" aria-expanded="false">
                                     <li><a href="{{ route('ProductAdd') }}">Product Add</a></li>
                                     <li><a href="{{ route('ProductView') }}">Product List</a></li>
                                     <li><a href="{{ route('ProductTrashlist') }}">Trash</a></li>
                                 </ul>
                             </li>
-
+                            {{-- Blog --}}
                             <li>
-                                <a href="{{ route('coupon') }}"><i class="mdi mdi-coin"></i><span> Coupons </span></a>
+                                <a href="javascript: void(0);" class="sl-menu-link @yield('blog_active')"><i class="mdi mdi-package-variant-closed"></i> <span>Blog</span> <span class="menu-arrow"></span></a>
+                                <ul class="nav-second-level" aria-expanded="false">
+                                    <li><a href="{{ route('blog.index') }}">Blog Index</a></li>
+                                    <li><a href="{{ route('blog.create') }}">Blog Add</a></li>
+                                    {{-- <li><a href="{{ route('ProductTrashlist') }}">Blog Trash</a></li> --}}
+                                </ul>
+                            </li>
+                            {{-- Coupons --}}
+                            <li>
+                                <a href="{{ route('coupon') }}" class="sl-menu-link @yield('coupon_active')"><i class="mdi mdi-coin"></i><span> Coupons </span></a>
+                            </li>
+                            {{-- Order --}}
+                            <li>
+                                <a href="{{ route('Orders') }}" class="sl-menu-link @yield('order_active')"><i class="mdi mdi-coin"></i><span> Order </span></a>
                             </li>
 
                             <li>

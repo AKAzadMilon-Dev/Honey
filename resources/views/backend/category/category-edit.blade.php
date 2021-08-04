@@ -1,5 +1,8 @@
 @extends('backend.master')
 
+@section('category_active')
+    active
+@endsection
 @section('content')
     <div class="content-page">
         <!-- Start content -->
@@ -70,7 +73,7 @@
         </div> <!-- content -->
 
         <footer class="footer text-right">
-            2021 © rasel. - raselwebdev.com
+            2021 © milon. - codermilon.com
         </footer>
 
     </div>

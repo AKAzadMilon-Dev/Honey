@@ -1,5 +1,9 @@
 @extends('backend.master')
 
+@section('product_active')
+    active
+@endsection
+
 @section('content')
     <div class="content-page">
         <!-- Start content -->
@@ -136,10 +140,8 @@
                                 </div>
                                 {{-- Product Price --}}
                                 <div class="form-group">
-                                    <label for="productPrice">Add Product Price:</label>
-                                    <input type="text" name="productPrice"
-                                        class="form-control @error('productPrice') is-invalid @enderror" id="productPrice"
-                                        placeholder="Ex: 500" value="{{ $product->product_price	 ?? old('productPrice') }}">
+                                    <label for="productPrice">Default Product Price:</label>
+                                    <input type="text" name="productPrice" class="form-control @error('productPrice') is-invalid @enderror" id="productPrice" value="{{ $product->product_price	}}">
                                     @error('productPrice')
                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -149,6 +151,63 @@
                                         </div>
                                     @enderror
                                 </div>
+
+                                {{-- Product Variation According to Color, Size, Price, Quantity --}}
+                                @foreach ($attributes as $attribute)
+                                <div id="dynamic-field-1" class="form-group dynamic-field">
+                                    <div class="row">
+                                        {{-- Product Color --}}
+                                        <input type="hidden" name="productAttributeId[]" value="{{ $attribute->id }}">
+                                        <div class="col-3">
+                                            <label for="field" class="font-weight-bold">Color</label>
+                                            <select class="form-control" name="color[]" id="color">
+                                                <option value="" disabled selected>Select Color</option>
+                                               @foreach ($color as $item)
+                                                <option
+                                                @if ($attribute->color_id == $item->id)
+                                                selected
+                                                @endif
+                                                value="{{ $item->id }}">{{ ucwords($item->color_name) }}</option>
+                                               @endforeach
+                                            </select>
+                                        </div>
+                                        {{-- Product Size --}}
+                                        <div class="col-3">
+                                            <label for="size" class="font-weight-bold">Size</label>
+                                            <select class="form-control" name="size[]" id="size">
+                                                <option value="" disabled selected>Select Size</option>
+                                               @foreach ($size as $item)
+                                                <option
+                                                @if ($attribute->size_id == $item->id)
+                                                selected
+                                                @endif
+                                                value="{{ $item->id }}">{{ $item->size }}</option>
+                                               @endforeach
+                                            </select>
+                                        </div>
+                                        {{-- Product Quantity --}}
+                                        <div class="col-3">
+                                            <label for="quantity" class="font-weight-bold">Quantity</label>
+                                        <input type="text" id="field" class="form-control" name="quantity[]" value="{{ $attribute->quantity }}" />
+                                        </div>
+                                        {{-- Product Price --}}
+                                        <div class="col-3">
+                                            <label for="productPrice" class="font-weight-bold">Price</label>
+                                            <input type="text" name="attributeprice[]" value="{{ $attribute->price }}"
+                                        class="form-control @error('productPrice') is-invalid @enderror" id="productPrice">
+                                        @error('productPrice')
+                                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                        @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+
                                 {{-- Product Thumbnail --}}
                                 <div class="form-group">
                                     <label for="thumbnail" class="form-control-label">Add Product Thumbnail(Recommented: 300x280):</label>
@@ -236,7 +295,7 @@
         </div> <!-- content -->
 
         <footer class="footer text-right">
-            2021 © rasel. - raselwebdev.com
+            2021 © milon. - codermilon.com
         </footer>
 
     </div>

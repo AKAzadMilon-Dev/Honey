@@ -144,8 +144,7 @@
                                 <li>
                                     <a href="javascript:void(0);">Blog <i class="fa fa-angle-down"></i></a>
                                     <ul class="dropdown_style">
-                                        <li><a href="blog.html">blog Page</a></li>
-                                        <li><a href="blog-details.html">blog Details</a></li>
+                                        <li><a href="{{ route('blogs') }}">blog Page</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="contact.html">Contact</a></li>
@@ -187,14 +186,11 @@
                                 </ul>
                             </li>
 
-                            @php
-                            // Cart Count Code
-                                $cart = App\Models\Cart::all();
-                                $cartCount = $cart->count();
-                            @endphp
+                            {{-- cart Count --}}
+
 
                             <li>
-                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>{{ $cartCount }}</span></a>
+                                <a href="javascript:void(0);"><i class="flaticon-shop"></i> <span>{{ cart()->count() }}</span></a>
                                 @php
                                     $subTotal = 0;
                                 @endphp
